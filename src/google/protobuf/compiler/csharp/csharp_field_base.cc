@@ -337,8 +337,12 @@ std::string FieldGeneratorBase::default_value() {
 std::string FieldGeneratorBase::default_value(const FieldDescriptor* descriptor) {
   switch (descriptor->type()) {
     case FieldDescriptor::TYPE_ENUM:
-      return GetClassName(descriptor->default_value_enum()->type()) + "." +
-        GetEnumValueName(descriptor->default_value_enum()->type()->name(), descriptor->default_value_enum()->name());
+      if (descriptor->default_value_enum()->options().has_scoped_alias())
+        return GetClassName(descriptor->default_value_enum()->type()) + "." +
+          descriptor->default_value_enum()->options().scoped_alias();
+	  else
+	    return GetClassName(descriptor->default_value_enum()->type()) + "." +
+		  GetEnumValueName(descriptor->default_value_enum()->type()->name(), descriptor->default_value_enum()->name());
     case FieldDescriptor::TYPE_MESSAGE:
     case FieldDescriptor::TYPE_GROUP:
       if (IsWrapperType(descriptor)) {

@@ -4911,6 +4911,7 @@ class PROTOBUF_EXPORT EnumValueOptions PROTOBUF_FINAL :
 
   enum : int {
     kUninterpretedOptionFieldNumber = 999,
+    kScopedAliasFieldNumber = 2,
     kDeprecatedFieldNumber = 1,
   };
   // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;
@@ -4930,6 +4931,26 @@ class PROTOBUF_EXPORT EnumValueOptions PROTOBUF_FINAL :
   PROTOBUF_NAMESPACE_ID::UninterpretedOption* add_uninterpreted_option();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< PROTOBUF_NAMESPACE_ID::UninterpretedOption >&
       uninterpreted_option() const;
+
+  // optional string scoped_alias = 2;
+  bool has_scoped_alias() const;
+  private:
+  bool _internal_has_scoped_alias() const;
+  public:
+  void clear_scoped_alias();
+  const std::string& scoped_alias() const;
+  void set_scoped_alias(const std::string& value);
+  void set_scoped_alias(std::string&& value);
+  void set_scoped_alias(const char* value);
+  void set_scoped_alias(const char* value, size_t size);
+  std::string* mutable_scoped_alias();
+  std::string* release_scoped_alias();
+  void set_allocated_scoped_alias(std::string* scoped_alias);
+  private:
+  const std::string& _internal_scoped_alias() const;
+  void _internal_set_scoped_alias(const std::string& value);
+  std::string* _internal_mutable_scoped_alias();
+  public:
 
   // optional bool deprecated = 1 [default = false];
   bool has_deprecated() const;
@@ -4957,6 +4978,7 @@ class PROTOBUF_EXPORT EnumValueOptions PROTOBUF_FINAL :
   ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< PROTOBUF_NAMESPACE_ID::UninterpretedOption > uninterpreted_option_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr scoped_alias_;
   bool deprecated_;
   friend struct ::TableStruct_google_2fprotobuf_2fdescriptor_2eproto;
 };
@@ -11520,7 +11542,7 @@ EnumOptions::uninterpreted_option() const {
 
 // optional bool deprecated = 1 [default = false];
 inline bool EnumValueOptions::_internal_has_deprecated() const {
-  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
   return value;
 }
 inline bool EnumValueOptions::has_deprecated() const {
@@ -11528,7 +11550,7 @@ inline bool EnumValueOptions::has_deprecated() const {
 }
 inline void EnumValueOptions::clear_deprecated() {
   deprecated_ = false;
-  _has_bits_[0] &= ~0x00000001u;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline bool EnumValueOptions::_internal_deprecated() const {
   return deprecated_;
@@ -11538,12 +11560,85 @@ inline bool EnumValueOptions::deprecated() const {
   return _internal_deprecated();
 }
 inline void EnumValueOptions::_internal_set_deprecated(bool value) {
-  _has_bits_[0] |= 0x00000001u;
+  _has_bits_[0] |= 0x00000002u;
   deprecated_ = value;
 }
 inline void EnumValueOptions::set_deprecated(bool value) {
   _internal_set_deprecated(value);
   // @@protoc_insertion_point(field_set:google.protobuf.EnumValueOptions.deprecated)
+}
+
+// optional string scoped_alias = 2;
+inline bool EnumValueOptions::_internal_has_scoped_alias() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool EnumValueOptions::has_scoped_alias() const {
+  return _internal_has_scoped_alias();
+}
+inline void EnumValueOptions::clear_scoped_alias() {
+  scoped_alias_.ClearToEmpty();
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline const std::string& EnumValueOptions::scoped_alias() const {
+  // @@protoc_insertion_point(field_get:google.protobuf.EnumValueOptions.scoped_alias)
+  return _internal_scoped_alias();
+}
+inline void EnumValueOptions::set_scoped_alias(const std::string& value) {
+  _internal_set_scoped_alias(value);
+  // @@protoc_insertion_point(field_set:google.protobuf.EnumValueOptions.scoped_alias)
+}
+inline std::string* EnumValueOptions::mutable_scoped_alias() {
+  // @@protoc_insertion_point(field_mutable:google.protobuf.EnumValueOptions.scoped_alias)
+  return _internal_mutable_scoped_alias();
+}
+inline const std::string& EnumValueOptions::_internal_scoped_alias() const {
+  return scoped_alias_.Get();
+}
+inline void EnumValueOptions::_internal_set_scoped_alias(const std::string& value) {
+  _has_bits_[0] |= 0x00000001u;
+  scoped_alias_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void EnumValueOptions::set_scoped_alias(std::string&& value) {
+  _has_bits_[0] |= 0x00000001u;
+  scoped_alias_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:google.protobuf.EnumValueOptions.scoped_alias)
+}
+inline void EnumValueOptions::set_scoped_alias(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  _has_bits_[0] |= 0x00000001u;
+  scoped_alias_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:google.protobuf.EnumValueOptions.scoped_alias)
+}
+inline void EnumValueOptions::set_scoped_alias(const char* value,
+    size_t size) {
+  _has_bits_[0] |= 0x00000001u;
+  scoped_alias_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:google.protobuf.EnumValueOptions.scoped_alias)
+}
+inline std::string* EnumValueOptions::_internal_mutable_scoped_alias() {
+  _has_bits_[0] |= 0x00000001u;
+  return scoped_alias_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* EnumValueOptions::release_scoped_alias() {
+  // @@protoc_insertion_point(field_release:google.protobuf.EnumValueOptions.scoped_alias)
+  if (!_internal_has_scoped_alias()) {
+    return nullptr;
+  }
+  _has_bits_[0] &= ~0x00000001u;
+  return scoped_alias_.ReleaseNonDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void EnumValueOptions::set_allocated_scoped_alias(std::string* scoped_alias) {
+  if (scoped_alias != nullptr) {
+    _has_bits_[0] |= 0x00000001u;
+  } else {
+    _has_bits_[0] &= ~0x00000001u;
+  }
+  scoped_alias_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), scoped_alias,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:google.protobuf.EnumValueOptions.scoped_alias)
 }
 
 // repeated .google.protobuf.UninterpretedOption uninterpreted_option = 999;

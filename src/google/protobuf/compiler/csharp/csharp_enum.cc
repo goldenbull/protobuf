@@ -68,6 +68,10 @@ void EnumGenerator::Generate(io::Printer* printer) {
       std::string original_name = descriptor_->value(i)->name();
       std::string name =
           GetEnumValueName(descriptor_->name(), descriptor_->value(i)->name());
+	  
+      if (descriptor_->value(i)->options().has_scoped_alias())
+        name = descriptor_->value(i)->options().scoped_alias();
+	
       // Make sure we don't get any duplicate names due to prefix removal.
       while (!used_names.insert(name).second) {
         // It's possible we'll end up giving this warning multiple times, but that's better than not at all.
